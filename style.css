@@ -1,0 +1,373 @@
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans TC', -apple-system, sans-serif;
+            color: #2F5233;
+            background-color: #FAFAF8;
+            line-height: 1.6;
+        }
+
+        /* 頂部導航 */
+        .top-bar {
+            background-color: #F5F5DC;
+            padding: 8px 0;
+            text-align: center;
+            font-size: 13px;
+            color: #6B8E23;
+        }
+
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 300;
+            color: #2F5233;
+            letter-spacing: 3px;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 35px;
+            list-style: none;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #2F5233;
+            font-size: 14px;
+            font-weight: 400;
+            transition: color 0.3s;
+            letter-spacing: 0.5px;
+        }
+
+        nav a:hover {
+            color: #6B8E23;
+        }
+
+        .header-icons {
+            display: flex;
+            gap: 25px;
+            font-size: 20px;
+        }
+
+        .header-icons span {
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .header-icons span:hover {
+            color: #6B8E23;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 75vh;
+            background: linear-gradient(rgba(47, 82, 51, 0.3), rgba(47, 82, 51, 0.3)),
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect fill="%23E8EDE7" width="1200" height="800"/><path fill="%236B8E23" opacity="0.1" d="M300,400 Q400,300 500,400 T700,400"/><circle cx="800" cy="300" r="80" fill="%232F5233" opacity="0.08"/><circle cx="400" cy="600" r="60" fill="%232F5233" opacity="0.08"/></svg>');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .hero-content {
+            color: #fff;
+            max-width: 700px;
+            padding: 40px;
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            font-weight: 300;
+            margin-bottom: 20px;
+            letter-spacing: 4px;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.2);
+        }
+
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 35px;
+            letter-spacing: 1px;
+            font-weight: 300;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 16px 45px;
+            background-color: #6B8E23;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 30px;
+            font-size: 15px;
+            letter-spacing: 2px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(107, 142, 35, 0.3);
+        }
+
+        .cta-button:hover {
+            background-color: #2F5233;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(47, 82, 51, 0.4);
+        }
+
+        /* 分類區 */
+        .categories {
+            max-width: 1400px;
+            margin: 80px auto;
+            padding: 0 40px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            font-weight: 300;
+            margin-bottom: 60px;
+            letter-spacing: 3px;
+            color: #2F5233;
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .category-card {
+            position: relative;
+            height: 280px;
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .category-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(47, 82, 51, 0.3), rgba(47, 82, 51, 0.6));
+            z-index: 1;
+        }
+
+        .category-bg {
+            width: 100%;
+            height: 100%;
+            background-color: #E8EDE7;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 80px;
+        }
+
+        .category-card:nth-child(1) .category-bg { background: linear-gradient(135deg, #a8d5ba, #8bc5a0); }
+        .category-card:nth-child(2) .category-bg { background: linear-gradient(135deg, #c8e6c9, #aed581); }
+        .category-card:nth-child(3) .category-bg { background: linear-gradient(135deg, #81c784, #66bb6a); }
+        .category-card:nth-child(4) .category-bg { background: linear-gradient(135deg, #a5d6a7, #81c784); }
+        .category-card:nth-child(5) .category-bg { background: linear-gradient(135deg, #b2dfdb, #80cbc4); }
+        .category-card:nth-child(6) .category-bg { background: linear-gradient(135deg, #c5e1a5, #aed581); }
+        .category-card:nth-child(7) .category-bg { background: linear-gradient(135deg, #9ccc65, #8bc34a); }
+        .category-card:nth-child(8) .category-bg { background: linear-gradient(135deg, #a8d5a8, #90c590); }
+        .category-card:nth-child(9) .category-bg { background: linear-gradient(135deg, #b8d4b8, #a0c4a0); }
+
+        .category-name {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #fff;
+            font-size: 22px;
+            letter-spacing: 2px;
+            z-index: 2;
+            font-weight: 300;
+        }
+
+        /* 精選商品 */
+        .featured {
+            background-color: #fff;
+            padding: 80px 40px;
+        }
+
+        .featured-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 35px;
+            margin-top: 50px;
+        }
+
+        .product-card {
+            background: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 260px;
+            background: linear-gradient(135deg, #E8EDE7, #d4e4d4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+        }
+
+        .product-info {
+            padding: 20px;
+        }
+
+        .product-name {
+            font-size: 16px;
+            margin-bottom: 8px;
+            color: #2F5233;
+            font-weight: 400;
+        }
+
+        .product-price {
+            font-size: 20px;
+            color: #6B8E23;
+            font-weight: 500;
+        }
+
+        /* 特色區 */
+        .features {
+            max-width: 1400px;
+            margin: 80px auto;
+            padding: 0 40px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 50px;
+            margin-top: 50px;
+        }
+
+        .feature-item {
+            text-align: center;
+        }
+
+        .feature-icon {
+            font-size: 50px;
+            margin-bottom: 20px;
+            color: #6B8E23;
+        }
+
+        .feature-title {
+            font-size: 20px;
+            margin-bottom: 12px;
+            color: #2F5233;
+            font-weight: 400;
+        }
+
+        .feature-desc {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #2F5233;
+            color: #E8EDE7;
+            padding: 60px 40px 30px;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h3 {
+            font-size: 16px;
+            margin-bottom: 20px;
+            font-weight: 400;
+            letter-spacing: 1px;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-section a {
+            color: #E8EDE7;
+            text-decoration: none;
+            font-size: 14px;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+
+        .footer-section a:hover {
+            opacity: 1;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(232, 237, 231, 0.2);
+            font-size: 13px;
+            opacity: 0.7;
+        }
+
+        @media (max-width: 768px) {
+            .category-grid, .product-grid, .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            nav ul {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+        }
+    </style>
+</head>
