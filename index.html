@@ -7,6 +7,24 @@
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
 </head>
+    
+<script>
+    let currentIndex = 0;
+    function moveSlide(step) {
+        const slides = document.querySelectorAll('.carousel-slide');
+        if (slides.length === 0) return;
+
+        // 移除當前 active
+        slides[currentIndex].classList.remove('active');
+        
+        // 計算新索引
+        currentIndex = (currentIndex + step + slides.length) % slides.length;
+        
+        // 加入新 active
+        slides[currentIndex].classList.add('active');
+    }
+</script>
+    
 <body>
     <!-- 頂部資訊列 -->
     <div class="top-bar">
@@ -40,10 +58,21 @@
 
     <!-- Hero Section -->
     <section class="hero">
-        <div class="hero-content">
-            <!-- <h1>與綠色共生</h1>
-            <p>精選優質植栽，為生活注入自然美學</p>
-            <a href="#categories" class="cta-button">探索植栽</a> -->
+        <div class="carousel-container">
+            <button class="carousel-prev" onclick="moveSlide(-1)">❮</button>
+            <button class="carousel-next" onclick="moveSlide(1)">❯</button>
+    
+            <div class="carousel-wrapper">
+                <div class="carousel-slide active">
+                    <img src="image/乾燥花擴香.jpg">
+                </div>
+                <div class="carousel-slide">
+                    <img src="image/聖誕紅 (Poinsettia).jpg">
+                </div>
+                <div class="carousel-slide">
+                    <img src="你的圖片3.jpg">
+                </div>
+            </div>
         </div>
     </section>
 
