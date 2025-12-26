@@ -1,35 +1,69 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Document</title>
+    <title>FLORA</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
+<script>
+    let currentIndex = 0;
+    function moveSlide(step) {
+        const slides = document.querySelectorAll('.carousel-slide');
+        if (slides.length === 0) return;
+
+        // 移除當前 active
+        slides[currentIndex].classList.remove('active');
+        
+        // 計算新索引
+        currentIndex = (currentIndex + step + slides.length) % slides.length;
+        
+        // 加入新 active
+        slides[currentIndex].classList.add('active');
+    }
+</script>
+
 <body>
-    <!-- 頂部資訊列 -->
     <div class="top-bar">
         全館滿 $1,500 免運 ｜ 新會員首購享 9 折優惠
     </div>
-
     <!-- Header -->
     <header>
         <div class="header-container">
-            <div class="logo">FLORA</div>
+            <a href="#" class="logo">
+                <img src="images/LOGO.png" alt="FLORA">
+            </a>
             <nav>
-                <ul>
-                    <li><a href="#觀葉植物">植物</a></li>
-                    <li><a href="#多肉植物">盆器</a></li>
-                    <li><a href="#香草植物">介質與肥料</a></li>
-                    <li><a href="#開花植物">園藝工具</a></li>
-                    <li><a href="#水生植物">居家綠植擺飾</a></li>
-                    <li><a href="#空氣鳳梨">組合套裝</a></li>
-                    <li><a href="#盆器配件">新手專區</a></li>
-                    <li><a href="#養護工具">季節/主題館</a></li>
-                    <li><a href="#植栽課程">療育周邊</a></li>
-                </ul>
-            </nav>
+    <ul>
+        <li>
+            <a href="#plant-care">植物養護</a>
+            <ul class="dropdown-menu">  <!-- 新增：下拉選單 -->
+                <li><a href="#plants">植物</a></li>
+                <li><a href="#soil-fertilizer">介質肥料</a></li>
+                <li><a href="#tools">工具</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#decoration">風格裝飾</a>
+            <ul class="dropdown-menu">  <!-- 新增：下拉選單 -->
+                <li><a href="#pots">盆器</a></li>
+                <li><a href="#home-decor">家居擺飾</a></li>
+                <li><a href="#healing">療癒小物</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#special">專屬企劃</a>
+            <ul class="dropdown-menu">  <!-- 新增：下拉選單 -->
+                <li><a href="#sets">組合套裝</a></li>
+                <li><a href="#beginner">新手推薦</a></li>
+                <li><a href="#seasonal">季節限定</a></li>
+            </ul>
+        </li>
+        <li><a href="#about">關於我們</a></li>
+        <li><a href="#faq">常見問題</a></li>
+    </ul>
+</nav>
             <div class="header-icons">
                 <span>🔍</span>
                 <span>👤</span>
@@ -38,60 +72,37 @@
         </div>
     </header>
 
+ 
     <!-- Hero Section -->
     <section class="hero">
-        <div class="hero-content">
-            <!-- <h1>與綠色共生</h1>
-            <p>精選優質植栽，為生活注入自然美學</p>
-            <a href="#categories" class="cta-button">探索植栽</a> -->
-        </div>
-    </section>
-
-    <!-- 分類區 -->
-    <section id="categories" class="categories">
-        <h2 class="section-title">植物</h2>
-        <div class="category-grid">
-            <div class="category-card">
-                <div class="category-bg">🌿</div>
-                <div class="category-name">觀葉植物</div>
-            </div>
-            <div class="category-card">
-                <div class="category-bg">🌵</div>
-                <div class="category-name">多肉植物</div>
-            </div>
-            <div class="category-card">
-                <div class="category-bg">🌱</div>
-                <div class="category-name">香草植物</div>
-            </div>
-            <div class="category-card">
-                <div class="category-bg">🌸</div>
-                <div class="category-name">開花植物</div>
-            </div>
-            <div class="category-card">
-                <div class="category-bg">💧</div>
-                <div class="category-name">水生植物</div>
-            </div>
-            <div class="category-card">
-                <div class="category-bg">🍃</div>
-                <div class="category-name">空氣鳳梨</div>
-            </div>
-            <div class="category-card">
-                <div class="category-bg">🪴</div>
-                <div class="category-name">盆器配件</div>
-            </div>
-            <div class="category-card">
-                <div class="category-bg">🔧</div>
-                <div class="category-name">養護工具</div>
-            </div>
-            <div class="category-card">
-                <div class="category-bg">📚</div>
-                <div class="category-name">植栽課程</div>
+        <div class="carousel-container">
+            <button class="carousel-prev" onclick="moveSlide(-1)">❮</button>
+            <button class="carousel-next" onclick="moveSlide(1)">❯</button>
+    
+            <div class="carousel-wrapper">
+                <div class="carousel-slide active">
+                    <img src="image/乾燥花擴香.jpg">
+                </div>
+                <div class="carousel-slide">
+                    <img src="image/聖誕紅 (Poinsettia).jpg">
+                </div>
+                <div class="carousel-slide">
+                    <img src="你的圖片3.jpg">
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- 精選商品 -->
-    <section class="featured">
+    <!-- Slogan 區域 -->
+    <section class="slogan-section">
+        <div class="slogan-content">
+            <h2 class="slogan-title">slogan</h2>
+            <p class="slogan-text">statement</p>
+        </div>
+    </section>
+
+    <!-- 商品區 -->
+    <section id="plants" class="featured">
         <div class="featured-container">
             <h2 class="section-title">本月精選</h2>
             <div class="product-grid">
@@ -123,73 +134,89 @@
                         <div class="product-price">NT$ 280</div>
                     </div>
                 </div>
+                <div class="product-card">
+                    <div class="product-image">🌸</div>
+                    <div class="product-info">
+                        <div class="product-name">白掌</div>
+                        <div class="product-price">NT$ 520</div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">🪴</div>
+                    <div class="product-info">
+                        <div class="product-name">虎尾蘭</div>
+                        <div class="product-price">NT$ 380</div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">🌾</div>
+                    <div class="product-info">
+                        <div class="product-name">蕨類組合</div>
+                        <div class="product-price">NT$ 590</div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">💚</div>
+                    <div class="product-info">
+                        <div class="product-name">綠蘿</div>
+                        <div class="product-price">NT$ 320</div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- 特色服務 -->
-    <section class="features">
-        <h2 class="section-title">我們的承諾</h2>
-        <div class="features-grid">
-            <div class="feature-item">
-                <div class="feature-icon">🚚</div>
-                <div class="feature-title">專業配送</div>
-                <div class="feature-desc">嚴選配送團隊，確保植物安全送達您手中，讓每株植栽都以最佳狀態抵達</div>
-            </div>
-            <div class="feature-item">
-                <div class="feature-icon">📖</div>
-                <div class="feature-title">養護指南</div>
-                <div class="feature-desc">提供完整的養護說明，從澆水到施肥，讓新手也能輕鬆照顧植物</div>
-            </div>
-            <div class="feature-item">
-                <div class="feature-icon">✨</div>
-                <div class="feature-title">品質保證</div>
-                <div class="feature-desc">嚴選健康植株，提供 7 天鑑賞期，讓您放心選購每一株綠意</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
+    <!-- Footer 版權聲明 -->
     <footer>
-        <div class="footer-container">
-            <div class="footer-section">
-                <h3>關於我們</h3>
-                <ul>
-                    <li><a href="#">品牌故事</a></li>
-                    <li><a href="#">永續理念</a></li>
-                    <li><a href="#">聯絡我們</a></li>
-                </ul>
+        <div class="footer-content">
+            <p>© 2024 FLORA. All Rights Reserved.</p>
+            <p>用心栽培每一份綠意，溫柔守護每個空間</p>
+            <div class="footer-links">
+                <a href="#privacy">隱私權政策</a>
+                <a href="#terms">服務條款</a>
+                <a href="#contact">聯絡我們</a>
             </div>
-            <div class="footer-section">
-                <h3>客戶服務</h3>
-                <ul>
-                    <li><a href="#">配送資訊</a></li>
-                    <li><a href="#">退換貨政策</a></li>
-                    <li><a href="#">常見問題</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h3>植栽知識</h3>
-                <ul>
-                    <li><a href="#">新手指南</a></li>
-                    <li><a href="#">養護技巧</a></li>
-                    <li><a href="#">部落格</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h3>追蹤我們</h3>
-                <ul>
-                    <li><a href="#">Instagram</a></li>
-                    <li><a href="#">Facebook</a></li>
-                    <li><a href="#">LINE 官方帳號</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            © 2024 綠意生活 Green Living. All rights reserved.
         </div>
     </footer>
-</body>
-</html>
+
+    <!-- JavaScript 輪播控制 -->
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.carousel-slide');
+        const dots = document.querySelectorAll('.carousel-dot');
+        let autoSlideInterval;
+
+        function showSlide(index) {
+            if (index >= slides.length) currentSlide = 0;
+            if (index < 0) currentSlide = slides.length - 1;
+            
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+            
+            slides[currentSlide].classList.add('active');
+            dots[currentSlide].classList.add('active');
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            showSlide(currentSlide);
+            resetAutoSlide();
+        }
+
+        function autoSlide() {
+            currentSlide++;
+            if (currentSlide >= slides.length) currentSlide = 0;
+            showSlide(currentSlide);
+        }
+
+        function resetAutoSlide() {
+            clearInterval(autoSlideInterval);
+            autoSlideInterval = setInterval(autoSlide, 3000); // 3秒切換
+        }
+
+        // 啟動自動輪播（每3秒切換）
+        autoSlideInterval = setInterval(autoSlide, 3000);
+        showSlide(currentSlide);
+    </script>
 </body>
 </html>
