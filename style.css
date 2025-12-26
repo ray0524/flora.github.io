@@ -156,7 +156,11 @@ nav li:hover .dropdown-menu {
             transform: scale(1.1);
         }
 
+<<<<<<< HEAD
   /* Hero Section */
+=======
+        /* Hero Section */
+>>>>>>> cfb2e3d41062efbdcc2e720326b68977068274ef
 .hero {
     height: 75vh;
     width: 100%;
@@ -430,6 +434,7 @@ nav li:hover .dropdown-menu {
             .hero h1 {
                 font-size: 36px;
             }
+<<<<<<< HEAD
 
             .hero-content {
                 padding: 30px;
@@ -442,3 +447,6 @@ nav li:hover .dropdown-menu {
             }
         }
     
+=======
+        }
+>>>>>>> cfb2e3d41062efbdcc2e720326b68977068274ef
