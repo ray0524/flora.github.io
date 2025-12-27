@@ -6,6 +6,7 @@
     <title>FLORA</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <script>
     let currentIndex = 0;
     function moveSlide(step) {
@@ -176,45 +177,5 @@
             </div>
         </div>
     </footer>
-
-    <!-- JavaScript 輪播控制 -->
-    <script>
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.carousel-slide');
-        const dots = document.querySelectorAll('.carousel-dot');
-        let autoSlideInterval;
-
-        function showSlide(index) {
-            if (index >= slides.length) currentSlide = 0;
-            if (index < 0) currentSlide = slides.length - 1;
-            
-            slides.forEach(slide => slide.classList.remove('active'));
-            dots.forEach(dot => dot.classList.remove('active'));
-            
-            slides[currentSlide].classList.add('active');
-            dots[currentSlide].classList.add('active');
-        }
-
-        function goToSlide(index) {
-            currentSlide = index;
-            showSlide(currentSlide);
-            resetAutoSlide();
-        }
-
-        function autoSlide() {
-            currentSlide++;
-            if (currentSlide >= slides.length) currentSlide = 0;
-            showSlide(currentSlide);
-        }
-
-        function resetAutoSlide() {
-            clearInterval(autoSlideInterval);
-            autoSlideInterval = setInterval(autoSlide, 3000); // 3秒切換
-        }
-
-        // 啟動自動輪播（每3秒切換）
-        autoSlideInterval = setInterval(autoSlide, 3000);
-        showSlide(currentSlide);
-    </script>
 </body>
 </html>
