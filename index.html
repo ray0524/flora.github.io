@@ -6,23 +6,6 @@
     <title>FLORA</title>
     <link rel="stylesheet" href="style.css">
 </head>
-
-<script>
-    let currentIndex = 0;
-    function moveSlide(step) {
-        const slides = document.querySelectorAll('.carousel-slide');
-        if (slides.length === 0) return;
-
-        // 移除當前 active
-        slides[currentIndex].classList.remove('active');
-        
-        // 計算新索引
-        currentIndex = (currentIndex + step + slides.length) % slides.length;
-        
-        // 加入新 active
-        slides[currentIndex].classList.add('active');
-    }
-</script>
 <body>
     <div class="top-bar">
         全館滿 $1,500 免運 ｜ 新會員首購享 9 折優惠
@@ -80,13 +63,20 @@
     
             <div class="carousel-wrapper">
                 <div class="carousel-slide active">
-                    <img src="image/乾燥花擴香.jpg">
+                    <img src="images/動態廣告1.png">
                 </div>
                 <div class="carousel-slide">
-                    <img src="image/聖誕紅 (Poinsettia).jpg">
-                </div>
+                    <img src="images/動態廣告2.png" usemap="#flora-map">
+                <map name="flora-map">
+                    <area shape="rect" coords="964,946,571,354" href="product page/soil.html" alt="介質肥料" title="介質肥料">
+                    
+                    <area shape="rect" coords="1066,360,1516,910" href="product page/tools.html" alt="工具" title="工具">
+                    
+                    <area shape="rect" coords="1589,347,2108,984" href="product page/plant.html" alt="植物" title="植物">
+                </map>
+            </div>
                 <div class="carousel-slide">
-                    <img src="你的圖片3.jpg">
+                    <img src="images/動態廣告3.png">
                 </div>
             </div>
         </div>
@@ -95,8 +85,8 @@
     <!-- Slogan 區域 -->
     <section class="slogan-section">
         <div class="slogan-content">
-            <h2 class="slogan-title">slogan</h2>
-            <p class="slogan-text">statement</p>
+            <h2 class="slogan-title">ROOTS LEAVES LIFE</h2>
+            <p class="slogan-text">從深植土壤的根部，到舒展呼吸的葉片；FLORA 陪您在城市的快節奏中，找回與自然共生的寧靜節奏。</p>
         </div>
     </section>
 
@@ -177,5 +167,6 @@
             </div>
         </div>
     </footer>
+    <script src="script.js"></script>
 </body>
 </html>

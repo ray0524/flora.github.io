@@ -176,18 +176,25 @@ nav li:hover .dropdown-menu {
     height: 100%;
     opacity: 0;
     transition: opacity 0.5s ease;
+    z-index: 1; /* 預設層級低 */
+    pointer-events: none; /* 預設禁止點擊，防止隱藏圖遮擋 */
 }
 
 .carousel-slide.active {
     opacity: 1;
+    z-index: 10; /* 顯示中的圖片層級提高 */
+    pointer-events: auto; /* 開啟點擊功能 */
 }
 
 .carousel-slide img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    object-position: center;
-    image-rendering: auto; 
+    object-fit: contain; /* 建議用 contain 確保座標不會因為裁切而跑掉 */
+    display: block;
+}
+
+area {
+    cursor: pointer;
 }
 
 .carousel-prev, .carousel-next {
