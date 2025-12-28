@@ -499,3 +499,54 @@ area {
             gap: 20px;
         }
     
+/* FAQ 專屬容器 */
+.faq-page-container {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 0 40px;
+    font-family: "Microsoft JhengHei", sans-serif;
+}
+
+/* 灰褐色標題列 */
+.faq-main-title {
+    background-color: #C1A88D; /* 參考附圖的色調 */
+    color: white;
+    padding: 15px 25px;
+    font-size: 24px;
+    letter-spacing: 2px;
+    margin-bottom: 50px;
+}
+
+.faq-list {
+    padding-left: 10px;
+}
+
+.faq-item {
+    margin-bottom: 40px;
+}
+
+/* 左側小黑槓 */
+.faq-question {
+    font-size: 18px;
+    color: #444;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.bar {
+    width: 6px;
+    height: 22px;
+    background-color: #333;
+    margin-right: 15px;
+}
+
+/* 回答的文字縮排與顏色 */
+.faq-answer {
+    padding-left: 21px; /* 剛好對齊問題的文字起始點 */
+    color: #555;
+    line-height: 1.8;
+    font-size: 16px;
+    white-space: pre-line; /* 保持換行感 */
+}
