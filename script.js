@@ -37,130 +37,103 @@ let currentIndex = 0;
     window.addEventListener('resize', rwdImageMap);
 
 
-        //購物車
-        // 更改商品數量
-        function changeQty(btn, change) {
-            const qtyInput = btn.parentElement.querySelector('.qty-input');
-            let currentQty = parseInt(qtyInput.value);
-            let newQty = currentQty + change;
-            
-            if (newQty < 1) newQty = 1;
-            if (newQty > 99) newQty = 99;
-            
-            qtyInput.value = newQty;
-            updateItemSubtotal(btn);
-            updateTotal();
+    const authTitle = document.getElementById('auth-title');
+    const loginForm = document.getElementById('login-form');
+    const registerForm = document.getElementById('register-form');
+    const switchBtn = document.getElementById('switch-auth');
+    const footerText = document.getElementById('footer-text');
+
+    switchBtn.addEventListener('click', function() {
+        if (loginForm.style.display !== 'none') {
+            // 切換到註冊
+            loginForm.style.display = 'none';
+            registerForm.style.display = 'block';
+            authTitle.innerText = '會員註冊';
+            footerText.innerText = '已經是會員了？';
+            switchBtn.innerText = '點此登入';
+        } else {
+            // 切換回登入
+            loginForm.style.display = 'block';
+            registerForm.style.display = 'none';
+            authTitle.innerText = '會員登入';
+            footerText.innerText = '還不是會員？';
+            switchBtn.innerText = '點此註冊';
+        }
+    });
+
+    function validateAndLogin() {
+        // 1. 抓取輸入框的值
+        const email = document.getElementById('login-email').value;
+        const password = document.getElementById('login-password').value;
+    
+        // 2. 判斷是否為空
+        if (email === "" || password === "") {
+            alert("請輸入完整的帳號與密碼！");
+            return; // 攔截，不往下執行跳轉
+        }
+    
+        // 3. 判斷格式 (簡單檢查是否有 @)
+        if (!email.includes("@")) {
+            alert("Email 格式不正確！");
+            return;
         }
 
-        // 更新單項小計
-        function updateItemSubtotal(element) {
-            const item = element.closest('.cart-item');
-            const price = parseInt(item.querySelector('.item-price').textContent.replace(/[^0-9]/g, ''));
-            const qty = parseInt(item.querySelector('.qty-input').value);
-            const subtotal = price * qty;
-            item.querySelector('.item-subtotal').textContent = `NT$ ${subtotal.toLocaleString()}`;
+        if (password.length < 6) {
+            alert("密碼長度不足！");
+            return;
         }
+    
+        // 4. 通過檢查才執行跳轉
+        alert("登入成功！歡迎回到 FLORA");
+        window.location.href = 'index.html'; 
+    }
 
-        // 更新總計
-        function updateTotal() {
-            const items = document.querySelectorAll('.cart-item');
-            let subtotal = 0;
-            let selectedCount = 0;
+function validateAndRegister() {
 
-            items.forEach(item => {
-                const checkbox = item.querySelector('.item-checkbox');
-                if (checkbox.checked) {
-                    const itemSubtotal = parseInt(item.querySelector('.item-subtotal').textContent.replace(/[^0-9]/g, ''));
-                    subtotal += itemSubtotal;
-                    selectedCount++;
-                }
-            });
+    // 1. 安全地抓取元素
+    const elName = document.getElementById('reg-name');
+    const elEmail = document.getElementById('reg-email');
+    const elPhone = document.getElementById('reg-phone');
+    const elAddress = document.getElementById('reg-address');
+    const elPw = document.getElementById('reg-password');
 
-            // 計算運費（滿1500免運）
-            const shipping = subtotal >= 1500 ? 0 : 100;
-            
-            // 計算折扣（假設新會員9折）
-            const discount = 0; // 可依需求調整
-            
-            // 總計
-            const total = subtotal + shipping - discount;
+    // 2. 檢查有沒有哪個 ID 寫錯了 (如果噴出 null 代表 HTML 的 ID 寫錯)
+    if (!elName || !elEmail || !elPhone || !elAddress || !elPw) {
+        console.error("錯誤：找不到其中一個輸入框的 ID，請檢查 HTML！");
+        alert("系統錯誤：找不到輸入欄位");
+        return;
+    }
 
-            // 更新顯示
-            document.getElementById('subtotal').textContent = `NT$ ${subtotal.toLocaleString()}`;
-            document.getElementById('shipping').textContent = shipping === 0 ? '免運費' : `NT$ ${shipping}`;
-            document.getElementById('discount').textContent = discount > 0 ? `- NT$ ${discount}` : 'NT$ 0';
-            document.getElementById('total').textContent = `NT$ ${total.toLocaleString()}`;
-        }
+    // 3. 取得數值並去空白
+    const name = elName.value.trim();
+    const email = elEmail.value.trim();
+    const phone = elPhone.value.trim();
+    const address = elAddress.value.trim();
+    const password = elPw.value.trim();
 
-        // 全選/取消全選
-        function toggleSelectAll() {
-            const selectAllCheckbox = document.getElementById('select-all');
-            const itemCheckboxes = document.querySelectorAll('.cart-item .item-checkbox');
-            
-            itemCheckboxes.forEach(checkbox => {
-                checkbox.checked = selectAllCheckbox.checked;
-            });
-            
-            updateTotal();
-        }
+    // 4. 判斷是否為空
+    if (name === "" || email === "" || phone === "" || address === "" || password === "") {
+        alert("所有欄位都是必填的喔！");
+        return;
+    }
 
-        // 刪除單項
-        function deleteItem(btn) {
-            if (confirm('確定要刪除此商品？')) {
-                btn.closest('.cart-item').remove();
-                updateTotal();
-                checkEmptyCart();
-            }
-        }
+    // 5. 格式檢查
+    if (!email.includes("@")) {
+        alert("Email 格式看起來不太對勁...");
+        return;
+    }
 
-        // 刪除所選
-        function deleteSelected() {
-            const selected = document.querySelectorAll('.cart-item .item-checkbox:checked');
-            if (selected.length === 0) {
-                alert('請先選擇要刪除的商品');
-                return;
-            }
-            
-            if (confirm(`確定要刪除 ${selected.length} 件商品？`)) {
-                selected.forEach(checkbox => {
-                    checkbox.closest('.cart-item').remove();
-                });
-                updateTotal();
-                checkEmptyCart();
-            }
-        }
+    if (phone.length < 9) {
+        alert("電話號碼長度不足！");
+        return;
+    }
 
-        // 檢查購物車是否為空
-        function checkEmptyCart() {
-            const items = document.querySelectorAll('.cart-item');
-            if (items.length === 0) {
-                document.querySelector('.cart-items').innerHTML = `
-                    <div class="empty-cart">
-                        <div class="empty-cart-icon">🛒</div>
-                        <div class="empty-cart-text">您的購物車是空的</div>
-                        <button class="checkout-btn" style="max-width: 300px; margin: 0 auto;" onclick="location.href='index.html'">
-                            前往選購
-                        </button>
-                    </div>
-                `;
-            }
-        }
+    if (password.length < 6) {
+        alert("密碼長度不足！");
+        return;
+    }
 
-        // 前往結帳
-        function checkout() {
-            const selected = document.querySelectorAll('.cart-item .item-checkbox:checked');
-            if (selected.length === 0) {
-                alert('請先選擇要結帳的商品');
-                return;
-            }
-            alert('即將前往結帳頁面...');
-            // 這裡可以導向結帳頁面
-            // window.location.href = 'checkout.html';
-        }
-
-        // 頁面載入時更新總計
-        window.addEventListener('load', () => {
-            // 預設全選
-            document.getElementById('select-all').checked = true;
-            toggleSelectAll();
-        });
+    // 6. 成功跳轉
+    alert("註冊成功！歡迎來到 FLORA");
+    window.location.href = 'index.html'; 
+}

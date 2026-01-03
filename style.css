@@ -156,6 +156,65 @@ nav li:hover .dropdown-menu {
             transform: scale(1.1);
         }
 
+        /* 會員選單容器定位 */
+.user-menu-container {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.user-icon {
+    font-size: 20px;
+    padding:30px;
+}
+
+/* 下拉選單基礎樣式 */
+.user-dropdown {
+    position: absolute;
+    top: 100%; /* 出現圖示正下方 */
+    right: 0;
+    background-color: white;
+    min-width: 150px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    border-radius: 8px; /* 柔和圓角 */
+    padding: 10px 0;
+    list-style: none;
+    z-index: 1000;
+    display: none; /* 預設隱藏 */
+}
+
+/* 滑鼠移入容器時顯示選單 */
+.user-menu-container:hover .user-dropdown {
+    display: block;
+}
+
+/* 選單項目樣式 */
+.user-dropdown li a {
+    display: block;
+    padding: 12px 20px;
+    text-decoration: none;
+    color: #2F5233; /* FLORA 品牌綠 */
+    font-size: 14px;
+    transition: background 0.3s;
+}
+
+/* 滑過選項時的底色 */
+.user-dropdown li a:hover {
+    background-color: #f4f7f4;
+    color: #6B8E23;
+}
+
+/* 增加一個裝飾用的小箭頭 (選用) */
+.user-dropdown::before {
+    content: "";
+    position: absolute;
+    top: -8px;
+    right: 15px;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 8px solid white;
+}
+
   /* Hero Section */
 .hero {
     height: 75vh;
